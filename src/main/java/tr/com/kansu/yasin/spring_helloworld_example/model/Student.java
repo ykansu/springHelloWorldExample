@@ -1,15 +1,13 @@
 package tr.com.kansu.yasin.spring_helloworld_example.model;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 
 public class Student implements Serializable{
     String name;
-    int no;
-    Date date;
+    int age;
+    Date birthDate;
 
     public String getName() {
         return name;
@@ -19,22 +17,20 @@ public class Student implements Serializable{
         this.name = name;
     }
 
-    public int getNo() {
-        return no;
+    public int getAge() {
+        return age;
     }
 
-    public void setNo(int no) {
-        this.no = no;
+    public void setAge(int age) {
+        this.age = age;
     }
 
- /*   @JsonFormat
-            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm")*/
-    @JsonSerialize(using=DateSerializer.class)
-    public Date getDate() {
-        return date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'hh:mm")
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }

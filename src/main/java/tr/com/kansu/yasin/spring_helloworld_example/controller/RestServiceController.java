@@ -1,8 +1,14 @@
 package tr.com.kansu.yasin.spring_helloworld_example.controller;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import tr.com.kansu.yasin.spring_helloworld_example.model.Student;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
@@ -17,13 +23,20 @@ public class RestServiceController {
     public Student getStudent(){
         Student student = new Student();
         student.setName("yasin kansu");
-        student.setNo(426);
-        student.setDate(new Date(System.currentTimeMillis()));
+        student.setAge(426);
+        student.setBirthDate(new Date(System.currentTimeMillis()));
         return student;
     }
 
     @RequestMapping(value="/createStudent", method= RequestMethod.POST)
     public Student createStudent( Student student){
         return student;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm"); //yyyy-MM-dd'T'HH:mm:ssZ example
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 }
