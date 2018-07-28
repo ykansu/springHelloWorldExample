@@ -1,10 +1,11 @@
 package tr.com.kansu.yasin.spring_helloworld_example.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Student implements Serializable{
+public class Student implements Serializable {
     String name;
     int age;
     Date birthDate;

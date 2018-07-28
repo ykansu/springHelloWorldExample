@@ -15,12 +15,12 @@ import java.util.Date;
 public class RestServiceController {
 
     @RequestMapping("/sayHello")
-    public String sayHello(){
+    public String sayHello() {
         return "Hello world";
     }
 
     @RequestMapping("/getStudent")
-    public Student getStudent(){
+    public Student getStudent() {
         Student student = new Student();
         student.setName("yasin kansu");
         student.setAge(426);
@@ -28,8 +28,8 @@ public class RestServiceController {
         return student;
     }
 
-    @RequestMapping(value="/createStudent", method= RequestMethod.POST)
-    public Student createStudent( Student student){
+    @RequestMapping(value = "/createStudent", method = RequestMethod.POST)
+    public Student createStudent(Student student) {
         return student;
     }
 
