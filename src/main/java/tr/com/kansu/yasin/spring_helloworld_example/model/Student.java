@@ -8,6 +8,8 @@ import java.util.Date;
 public class Student implements Serializable {
     String name;
     int age;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'hh:mm")
     Date birthDate;
 
     public String getName() {
@@ -26,7 +28,7 @@ public class Student implements Serializable {
         this.age = age;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'hh:mm")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'hh:mm")
     public Date getBirthDate() {
         return birthDate;
     }
