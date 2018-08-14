@@ -1,9 +1,8 @@
 package tr.com.kansu.yasin.spring_helloworld_example.controller;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import tr.com.kansu.yasin.spring_helloworld_example.bean.FullAdder;
 import tr.com.kansu.yasin.spring_helloworld_example.model.Student;
 
 import java.util.Date;
@@ -11,9 +10,18 @@ import java.util.Date;
 @RestController
 public class RestServiceController {
 
+    @Autowired
+    FullAdder adder;
+
     @RequestMapping("/sayHello")
     public String sayHello() {
         return "Hello world";
+    }
+
+    @GetMapping("addNumbers")
+    public String addNumbers(@RequestParam int a, @RequestParam int b) {
+        int sum = a + b;
+        return "Sum: " + adder.add(a, b);
     }
 
     @RequestMapping("/getStudent")
