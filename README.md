@@ -5,6 +5,9 @@ Template Spring Rest Service Project with Maven
 ->Simple rest service returns "Hello World" as string when called:   
 `http://localhost:8080/<deploy_path>/services/sayHello`
 
+->Simple rest service returns sum of given numbers in parameters when called:   
+`http://localhost:8080/<deploy_path>/services/addNumbers?a=5&b=8`
+
 ->Simple rest service returns a pojo formatted as JSON when called:    
 `http://localhost:8080/<deploy_path>/services/getStudent`
 
