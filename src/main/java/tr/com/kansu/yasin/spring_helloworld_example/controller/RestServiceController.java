@@ -6,7 +6,7 @@ import tr.com.kansu.yasin.spring_helloworld_example.bean.FullAdder;
 import tr.com.kansu.yasin.spring_helloworld_example.model.Student;
 
 import java.util.Date;
-@CrossOrigin(origins = "http://ykansu.cf")
+@CrossOrigin(origins = "http://projects.ykansu.cf")
 @RestController
 public class RestServiceController {
 
