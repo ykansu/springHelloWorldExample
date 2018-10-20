@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript">
+        var serviceURL=".";
         function onBodyLoad() {
             document.getElementsByName("myForm")[0].addEventListener("submit", function (event) {
                 event.preventDefault();
@@ -21,7 +22,7 @@
                     document.getElementById("demo").innerHTML = xhr.responseText;
                 }
             };
-            xhr.open("post", "./services/createStudent", true);
+            xhr.open("post", serviceURL+"/services/createStudent", true);
             xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
             var j = {"name": name, "age": age, "birthDate": birthDate};
             xhr.send(JSON.stringify(j));
