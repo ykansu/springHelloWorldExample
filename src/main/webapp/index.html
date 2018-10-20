@@ -4,34 +4,84 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript">
-        var serviceURL="http://localhost:8080/sampleRest/";
+        var serviceURL = "http://localhost:8080/sampleRest/";
+
         function onBodyLoad() {
             document.getElementsByName("myForm")[0].addEventListener("submit", function (event) {
                 event.preventDefault();
                 var name = document.getElementsByName("name")[0].value;
                 var age = document.getElementsByName("age")[0].value;
                 var birthDate = document.getElementsByName("birthDate")[0].value;
-                submitForm(name, age, birthDate);
+                createStudent(name, age, birthDate);
             })
         }
 
-        function submitForm(name, age, birthDate) {
+        function createXHR(url, method) {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("demo").innerHTML = xhr.responseText;
+                    setTimeout(function(){document.getElementById("demo").innerHTML ="";} ,5*1000);
                 }
             };
-            xhr.open("post", serviceURL+"/services/createStudent", true);
+            xhr.open(method, serviceURL + url, true);
+            return xhr;
+        }
+
+        function createStudent(name, age, birthDate) {
+            var xhr = createXHR("/services/createStudent", "post");
             xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
             var j = {"name": name, "age": age, "birthDate": birthDate};
             xhr.send(JSON.stringify(j));
         }
+
+        function sayHello() {
+            var xhr = createXHR("/services/sayHello", "get");
+            xhr.send();
+        }
+
+        function addNumbers() {
+            var num1 = document.getElementsByName("number1")[0].value;
+            var num2 = document.getElementsByName("number2")[0].value;
+            var xhr = createXHR("/services/addNumbers?a=" + num1 + "&b=" + num2, "get");
+            xhr.send();
+        }
+
+        function getStudent(){
+            var xhr = createXHR("/services/getStudent", "get");
+            xhr.send();
+        }
     </script>
 </head>
 
-<body onload="onBodyLoad()">
-<table style="width: 300px">
+<body onload="onBodyLoad()" style="width: 350px">
+<h2>Rest Services</h2>
+<span id="demo"></span>
+<br>
+<br>
+<fieldset>
+    <legend>Say Hello (get method example)</legend>
+    <input type="button" onclick="sayHello()" value="sayHello"/>
+</fieldset>
+<br>
+<br>
+<fieldset>
+    <legend>Add Numbers (get method example)</legend>
+    <input type="number"  name="number1" value="14"/>
+    <input type="number"  name="number2" value="53"/>
+    <br><input type="button" onclick="addNumbers()" value="addNumbers"/>
+</fieldset>
+<br>
+<br>
+<fieldset>
+    <legend>Get Student (get method example)</legend>
+    <input type="button" onclick="getStudent()" value="getStudent"/>
+</fieldset>
+<br>
+<br>
+<fieldset>
+    <legend>Create Student (post method example)</legend>
+    <table style="width: 300px">
     <form action="./services/createStudent" method="post" name="myForm">
         <tr>
             <td>First name</td>
@@ -49,11 +99,7 @@
             <td colspan="2" align="center"><input style="width: 70%" type="submit" value="Submit"></td>
         </tr>
     </form>
-</table>
-<br>
-<br>
-<br>
-<span id="demo"></span>
+</table></fieldset>
 
 </body>
 </html>

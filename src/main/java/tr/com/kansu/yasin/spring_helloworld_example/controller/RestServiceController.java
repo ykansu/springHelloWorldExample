@@ -28,7 +28,7 @@ public class RestServiceController {
     public Student getStudent() {
         Student student = new Student();
         student.setName("yasin kansu");
-        student.setAge(426);
+        student.setAge(24);
         student.setBirthDate(new Date(System.currentTimeMillis()));
         return student;
     }
